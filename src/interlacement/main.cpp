@@ -15,6 +15,7 @@
 #include <signal.h>
 
 #include <pcosynchro/pcothread.h>
+#include <pcosynchro/pcologger.h>
 
 using namespace std;
 
@@ -30,12 +31,15 @@ void run(int tid)
 {
     while(programRunning) {
         // TODO
+        //std::cout << "Thread number : " << tid << endl;
+        logger() << "Thread number : " << tid << endl;
     }
 }
 
 
 int main()
 {
+    logger().setVerbosity(1);
     // Get the SIGINT (ctrl+c) sent from the user to end
     // the program execution in a clean way
     signal(SIGINT, signalHandler);

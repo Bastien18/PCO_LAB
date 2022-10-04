@@ -18,6 +18,7 @@
 #include <QList>
 
 #include <pcosynchro/pcothread.h>
+#include <pcosynchro/pcologger.h>
 
 #include "mythread.h"
 

@@ -19,6 +19,8 @@ void Dialog::startThreads()
     /* Initialisation du compteur à 0 avant de lancer les threads */
     initCounter();
 
+    logger().setVerbosity(1);
+
     /* Récupère les paramètres */
     long unsigned int nbIterations   = static_cast<long unsigned int>(ui->editNbIterations->text().toLong());
     long unsigned int nbThreads      = static_cast<long unsigned int>(ui->editNbThreads->text().toLong());

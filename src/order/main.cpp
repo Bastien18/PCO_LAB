@@ -17,11 +17,14 @@
 
 using namespace std;
 
-int sharedVar;
+int sharedVar,
+    inOrder = 0;
 
 void run(int tid)
 {
+    while(inOrder != tid);
     sharedVar = tid;
+    ++inOrder;
 }
 
 int main()
