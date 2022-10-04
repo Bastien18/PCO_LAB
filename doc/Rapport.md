@@ -23,4 +23,27 @@
 - Afin de résoudre le problème nous avons passer la variable counter dans le type ```std::atomic```. Selon la documentation ce type permet la synchronisation inter-thread lors de l'accès un objet de ce type. Nous obtenons ainsi un ratio de 100% pour les test suivant:
 1 coeur:
 
-	| Nbr de thread | Nbr d'iteration | Ratio | |----------|:-------------:|------:| | 1| 1 | 100% |
+| Nbr de thread | Nbr d'iteration | Ratio | 
+|----------|:-------------:|------:| 
+| 1 | 1 | 100% |
+|----------|:-------------:|------:| 
+| 100 | 1 | 100% |
+|----------|:-------------:|------:| 
+| 10000 | 1 | 100% |
+|----------|:-------------:|------:| 
+| 10000 | 100 | 100% |
+|----------|:-------------:|------:| 
+| 10000 | 10000 | 100% |
+
+2 coeurs:
+| Nbr de thread | Nbr d'iteration | Ratio | 
+|----------|:-------------:|------:| 
+| 1 | 1 | 100% |
+|----------|:-------------:|------:| 
+| 100 | 1 | 100% |
+|----------|:-------------:|------:| 
+| 10000 | 1 | 100% |
+|----------|:-------------:|------:| 
+| 10000 | 100 | 100% |
+|----------|:-------------:|------:| 
+| 10000 | 10000 | 100% |
