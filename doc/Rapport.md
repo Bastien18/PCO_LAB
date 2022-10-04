@@ -24,6 +24,7 @@
 1 coeur:
 
 | Nbr de thread | Nbr d'iteration | Ratio | 
+|----------|:-------------:|------:|
 | 1 | 1 | 100% |
 | 100 | 1 | 100% |
 | 10000 | 1 | 100% | 
@@ -31,7 +32,8 @@
 | 10000 | 10000 | 100% |
 
 2 coeurs:
-| Nbr de thread | Nbr d'iteration | Ratio | 
+| Nbr de thread | Nbr d'iteration | Ratio |
+|----------|:-------------:|------:|
 | 1 | 1 | 100% |
 | 100 | 1 | 100% |
 | 10000 | 1 | 100% | 
