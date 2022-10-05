@@ -3,6 +3,7 @@
 #include <pcosynchro/pcothread.h>
 #include <atomic>
 
+// Juste passer le type de la variable counter en atomic permet de résoudre les problèmes lié au problème de la partie 6 du labo
 static volatile std::atomic<long unsigned int> counter;
 
 void runTask(unsigned long nbIterations)
