@@ -16,7 +16,7 @@
   ```
 ### PrimeNumberDetectorMultiThread::isPrime
 Pour cette partie nous avons décider de séparer la fonction en deux:
-La première partie sert à créer un vecteur de Pco_thread et attend que chaque thread finissent leurs propre execution.
+La première partie sert à créer un vecteur de Pco_thread qui executent la fonction threadPrime(décrite un peu plus bas) et attend que tous les threads finissent leurs propre execution puis retourné le résultat stocké dans l'attribut finded.
 ``` 
 bool PrimeNumberDetectorMultiThread::isPrime(uint64_t number) {
     std::vector<PcoThread> v;
@@ -26,16 +26,16 @@ bool PrimeNumberDetectorMultiThread::isPrime(uint64_t number) {
         v.emplace_back(&PrimeNumberDetectorMultiThread::threadPrime,this,number,i);
    }
 
-    // Waiting the first to be sure that every thing is set up
+    // Waiting all the threads
     for(auto&  thread : v)
         thread.join();
-    // Return if all  the thread havent found a dividder
+    // Return if all  the thread havent found a divider
     return !finded;
 
  }
 ```
 
-La deuxième partie sert à détecter un diviseur dans une range de taille = env. sqrt(nombre à examiner) / nombre de thread. Chaque thread examinera une range consécutive à un autre de 2 à sqrt(nombre à examiner). Lorsqu'un thread a trouvé un diviseur il met l'attribut finded à true ce qui fera automatiquement sortir les autre thread de leur iteration car l'attribut est checker dans la condition de boucle. Une fois que le compteur de thread à atteint le nombre de thread on reset le compteur ainsi que le flag ready.
+La deuxième partie, la fonction threadPrime, sert à détecter un diviseur dans une range de taille = env. sqrt(nombre à examiner) / nombre de thread. Chaque thread examinera une range consécutive à un autre de 2 à sqrt(nombre à examiner). Lorsqu'un thread a trouvé un diviseur il met l'attribut finded à true ce qui fera automatiquement sortir les autres threads de leurs iteration car l'attribut est checker dans la condition de boucle. Une fois que le compteur de thread à atteint le nombre de thread on reset le compteur ainsi que le flag ready.
 
 ``` 
 void PrimeNumberDetectorMultiThread::threadPrime(uint64_t number, size_t id){
