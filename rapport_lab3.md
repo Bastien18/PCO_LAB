@@ -21,6 +21,31 @@
 
 
 #### Wholeseller
+- Buy:
+    - Check si item différent de Spectacles && quantité demandé ok (dans les stocks et > 0)
+        - Seciton critique:
+            - mutex.lock
+            - Encaisse l'achat
+            - Retire du stock
+            - mutex.unlock
+        - Fin section critique
+        - Retourne le prix ou 0 si transaction KO
+
+- Buy_ressource:
+    - Si pas assez d'argent pour achat
+        - N'achète rien
+    - Si assez d'argent
+        - Seciton critique:
+          - mutex.lock
+          - Encaisse l'achat
+          - Retire du stock
+          - mutex.unlock
+        - Fin section critique
+
+- Run:
+
+
+
 #### Factory
 - Buy:
     - Contrôle item == item construit par la factory en question && quantité demandé est valide (dans les stocks et > 0)
@@ -46,7 +71,7 @@
                       - mutex.unlock
                   - Fin section critique
 
-- 
+- Run:
 
 ### Test:
 
