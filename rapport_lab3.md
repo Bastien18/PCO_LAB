@@ -18,6 +18,7 @@
     - Si transaction ok retourne le prix payé sinon retourne 0
     
 - Run:
+  - Ajout de mutex autour lors du payement de l'employé et de l'incrémentation du stock
 
 
 #### Wholeseller
@@ -45,7 +46,6 @@
 - Run:
 
 
-
 #### Factory
 - Buy:
     - Contrôle item == item construit par la factory en question && quantité demandé est valide (dans les stocks et > 0)
@@ -70,6 +70,23 @@
                       - Retire du stock
                       - mutex.unlock
                   - Fin section critique
+
+- Build_item:
+    - Determine le prix de l'employé
+    - Si pas assez d'argent pour payer l'employé où pas assez de ressource pour build l'item
+        - Seciton critique:
+          - mutex.lock
+          - Paie l'employé
+          - mutex.unlock
+         - Fin section critique 
+     - Construction de l'item (temps random)
+     - Incrémente le compteur d'item (=> sert au stat)
+        - Seciton critique:
+          - mutex.lock
+          - Incrémente stock d'item construit
+          - Décrémente stock des ressources
+          - mutex.unlock
+         - Fin section critique 
 
 - Run:
 
