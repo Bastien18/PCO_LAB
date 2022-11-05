@@ -11,8 +11,8 @@ Ci-dessous se trouve le détails de nos implémentation.
 
 #### Mine
 - Buy: 
-    - Check de la validité de quantité demander ( > 0) et check du stock donc quantité de l'item à acheter > quantité demandé.
-    - Determinbation du prix
+    - Check de la validité de quantité demandé ( > 0) et check du stock donc quantité de l'item à acheter > quantité demandé.
+    - Determination du prix
     - Section critique (car accès au stock et argent => ressources communes):
       - mutex.lock
       - Encaisse l'achat
@@ -22,14 +22,13 @@ Ci-dessous se trouve le détails de nos implémentation.
     - Si transaction ok retourne le prix payé sinon retourne 0
     
 - Run:
-  - Ajout de mutex autour lors du payement de l'employé et de l'incrémentation du stock
+  - Ajout de mutex autour du payement de l'employé et de l'incrémentation du stock
   - Ajout de la condition d'arrêt grâce au boolean working de la superclasse seller (donc de chaque mine/factory/wholeseller) => mis à false si endService appelé       (touche enter pressé dans console).
-
 
 #### Wholeseller
 - Buy:
     - Check si item différent de Spectacles && quantité demandé ok (dans les stocks et > 0)
-        - Seciton critique:
+        - Section critique:
             - mutex.lock
             - Encaisse l'achat
             - Retire du stock
@@ -41,7 +40,7 @@ Ci-dessous se trouve le détails de nos implémentation.
     - Si pas assez d'argent pour achat
         - N'achète rien
     - Si assez d'argent
-        - Seciton critique:
+        - Section critique:
           - mutex.lock
           - Encaisse l'achat
           - Retire du stock
@@ -51,11 +50,10 @@ Ci-dessous se trouve le détails de nos implémentation.
 - Run
     Ajout de la condition d'arrêt grâce au boolean working de la superclasse seller (donc de chaque mine/factory/wholeseller) => mis à false si endService appelé       (touche enter pressé dans console).
 
-
 #### Factory
 - Buy:
     - Contrôle item == item construit par la factory en question && quantité demandé est valide (dans les stocks et > 0)
-    - Seciton critique:
+    - Section critique:
       - mutex.lock
       - Encaisse l'achat
       - Retire du stock
@@ -64,13 +62,13 @@ Ci-dessous se trouve le détails de nos implémentation.
     - Retourne le prix ou 0 si transaction KO
     
 - Order_ressource:
-    - Itère sur les ressources necessaires pour build l'item :
+    - Itère sur les ressources nécessaires pour build l'item :
         - Si pas assez d'item pour construire:
-            - Détermine combien d'item acheter => tous ce qu'on peut la moitié de l'argent de la factory (max 5 items)   
+            - Détermine combien d'item acheter => tous ce qu'on peut avec la moitié de l'argent de la factory (max 5 items)   
             - Itére sur tous les wholeseller:
-                - tentaive d'achat pour chaque wholeseller (prend le premier qui peut fournir)
+                - tentative d'achat pour chaque wholeseller (prend le premier qui peut fournir)
                 - Si bon pour l'achat :
-                  - Seciton critique:
+                  - Section critique:
                       - mutex.lock
                       - Encaisse l'achat
                       - Retire du stock
@@ -78,9 +76,9 @@ Ci-dessous se trouve le détails de nos implémentation.
                   - Fin section critique
 
 - Build_item:
-    - Determine le prix de l'employé
+    - Détermine le prix de l'employé
     - Si pas assez d'argent pour payer l'employé où pas assez de ressource pour build l'item
-        - Seciton critique:
+        - Section critique:
           - mutex.lock
           - Paie l'employé
           - mutex.unlock
