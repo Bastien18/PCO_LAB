@@ -2,8 +2,12 @@
 ## Loïc Brasey & Bastien Pillonel
 
 ### Introduction:
+Ce laboratoire a pour but de gérer la simulation d'achat/fabrication d'item entre trois différents acteurs (mine, usine et grossiste). Il nous était donc demandé de faire l'implémentation de certaines méthodes des classes mine, factory et wholeseller ainsi que de gérer l'accès aux sections critiques.
 
 ### Conception:
+La gestion des variables communes est le point clefs de ce labo. Nous avons décidé d'ajouter un attribut mutex à la superclasse seller. Ainsi les classes mine, factory et wholeseller ont chacune leur propre mutex qui sera utiliser pour éviter la mauvaise modification des variables money et stock[item] qui sont partagées.
+
+Ci-dessous se trouve le détails de nos implémentation.
 
 #### Mine
 - Buy: 
@@ -19,6 +23,7 @@
     
 - Run:
   - Ajout de mutex autour lors du payement de l'employé et de l'incrémentation du stock
+  - Ajout de la condition d'arrêt grâce au boolean working de la superclasse seller (donc de chaque mine/factory/wholeseller) => mis à false si endService appelé       (touche enter pressé dans console).
 
 
 #### Wholeseller
@@ -43,7 +48,8 @@
           - mutex.unlock
         - Fin section critique
 
-- Run:
+- Run
+    Ajout de la condition d'arrêt grâce au boolean working de la superclasse seller (donc de chaque mine/factory/wholeseller) => mis à false si endService appelé       (touche enter pressé dans console).
 
 
 #### Factory
@@ -89,7 +95,7 @@
          - Fin section critique 
 
 - Run:
+    Ajout de la condition d'arrêt grâce au boolean working de la superclasse seller (donc de chaque mine/factory/wholeseller) => mis à false si endService appelé       (touche enter pressé dans console).
 
 ### Test:
-
-### Conclusion:
+Après avoir laisser tourner le programme assez longtemps pour qu'au moins un item spectacles soit fabriqué nous avons arrêter le programme et bien constater un score de 1800/1800 comme attendu.
